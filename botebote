@@ -1,0 +1,30 @@
+import discord
+from discord.ext import commands
+import random
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='$', intents=intents)
+@bot.event
+async def on_ready():
+    print(f'{bot.user} olarak giriş yaptık')
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Merhaba! Ben {bot.user}, bir Discord sohbet botuyum!')
+@bot.command()
+async def oneri(ctx):
+    kelime = "Başlangıç olarak, geri dönüştürülebilir malzemeleri tanımak için bir rehber edinin ve evinizde atıkları ayırmak için ayrı kutular kullanmaya başlayın; cam, plastik, kağıt ve metal gibi malzemeleri birbirinden ayırarak doğaya katkıda bulunabilirsiniz", "Yerel geri dönüşüm programlarını ve tesislerini araştırın; hangi malzemelerin geri dönüştürüldüğünü ve nasıl toplanıp işlendiklerini öğrenmek için yerel belediyenizin web sitesini ziyaret edin veya bir geri dönüşüm merkezine giderek bilgi alın", "Geri dönüşüm alışkanlıklarınızı günlük rutininize entegre edin; alışveriş yaparken geri dönüştürülebilir ambalajları tercih edin, tekrar kullanılabilir çantalar kullanın ve geri dönüştürülebilir atıklarınızı düzenli olarak geri dönüşüm kutularına atmayı unutmayın"
+    rast = random.choice(kelime)
+    await ctx.send(rast)
+
+@bot.command()
+async def yardim(ctx):
+    yardim = ["$hello yazarsanız bot size kendisini tanıtır. $oneri komutunu kullanırsanız bot size geri dönüşüm için ne yapabileceğiniz hakkında biraz uzun da olsa bilgiler verir."]
+    await ctx.send(yardim)
+
+@bot.command()
+async def omur(ctx):
+    liste = ["PET (Polietilen Tereftalat) şişelerinin doğada tamamen parçalanması genellikle 450 yıla kadar sürebilir. Bu süre, çevresel koşullara bağlı olarak değişebilir. PET şişeler, doğada çok uzun süre bozulmadan kalabildikleri için çevreye büyük zarar verebilirler. Bu nedenle, PET şişelerin geri dönüştürülmesi ve yeniden kullanılması büyük önem taşır. Geri dönüşüm, bu tür plastiklerin çevresel etkilerini azaltmak için en etkili yöntemlerden biridir.", "Cam, doğada bozulmadan kalabilen ve neredeyse sonsuz bir ömre sahip bir malzemedir. Tam olarak doğada ne kadar sürede parçalanacağı bilinmemekle birlikte, camın binlerce yıl bozulmadan kalabildiği tahmin edilmektedir."]
+    rid = random.choice(liste)
+    await ctx.send(rid)
+
+bot.run("tk")
